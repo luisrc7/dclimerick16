@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Development Workflow in Drupal 8</title>
+
+        <meta name="author" content="Luis Rodriguez">
+        <meta name="description" content="Presentation at DrupalCamp Limerick 2016. Development Workflow in Drupal 8">
+        <meta name="keywords" content="Drupal,Drupal8,CMI,Workflow">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/league.css">
+        <link rel="stylesheet" href="css/custom.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <img src="img/logo-iterate.png" id="logo" class="right" />
+				<section>
+                    <section>
+                        <!--<h1>Introduction</h1>-->
+                        <h3>How Drupal 8 Changes the Development Workflow</h3>
+                        <p><em>Luis Rodriguez.</em> I am a Developer at <a target="_blank" href="https://www.iterate.ie">iterate.</a></p>
+                        <p>You can find me in:</p>
+                        <ul>
+                            <li>Drupal: <a target="_blank" href="https://www.drupal.org/u/luisrc7">https://www.drupal.org/u/luisrc7</a></li>
+                            <li>Twitter: <a target="_blank" href="https://twitter.com/luisrc7">@luisrc7</a></li>
+                            <li>LinkedIn: <a target="_blank" href="https://ie.linkedin.com/in/luisrc">https://ie.linkedin.com/in/luisrc</a></li>
+                        </ul>
+                        <br/>
+                        <br/>
+                        <p><em><a target="_blank" href="http://luisrc7.github.io/dclimerick16">http://luisrc7.github.io/dclimerick16</a></em></p>
+                        <aside class="notes">
+                            Nothing special.
+                        </aside>
+                    </section>
+                    <section>
+                        Presentation Slide 2
+                        who am I.
+                        My connections details, email, linkedin, twitter?
+                        And my position in iterate.
+                    </section>
+                    <section>
+                        Presentation Slide 3
+                        who is iterate.
+                        We are hiring?
+                        What we do.
+                    </section>
+                    <section>
+                        Presentation Slide 4
+                        Structure of the talk.
+                        Present the key points of my presentation and talk a little bit about each one.
+                    </section>
+                </section>
+
+				<section>
+                    <section>
+                        Drupal 7 Slide 1
+                        Intro
+                    </section>
+                    <section>
+                        Drupal 7 Slide 1
+                        What is content and what is configuration (General)
+                        1 is the Drupal Core
+                        2 we have our custom modules we installed or we created, so basically anything inside sites
+                        folder and profiles folder if using a profile.
+                        3 then we have the files, some managed hosting companies keep the filesystem out of the web
+                        server or even in a CDN.
+                        4 is the database.
+                    </section>
+                    <section>
+                        Drupal 7 Slide 2
+                        Any config change won't be saved in files, so won't be saved in version control.
+                    </section>
+                    <section>
+                        Drupal 7 Slide 3
+                        personal experiences (bads). Personal fails.
+                        Lots of problems with configuration, ending doing it on live, or not downloading the latest
+                        version of the live site before doing the development, or some changed between your development
+                        and the deployment, etc…. All this could cause to lose work or even make things not working on
+                        the live site.
+                    </section>
+                    <section>
+                        Drupal 7 Slide 4
+                        How D7 manage configuration changes. (blocks, CT definitions, View updates, context rules)
+                        Any of these changes are managed directly in the database.
+                    </section>
+                    <section>
+                        Drupal 7 Slide 5
+                        Some workarounds like Features module or hook_update for modules and profiles.
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        Drupal 8 Slide 1
+                        Intro
+                    </section>
+                    <section>
+                        Drupal 8 Slide 2
+                        How it works. (what you can and you can’t do)
+                        Yaml files.
+                    </section>
+                    <section>
+                        Drupal 8 Slide 3
+                        Maybe some history about CM in D8.
+                        Export / import
+                        Single or full
+                        Through the UI as well
+                    </section>
+                    <section>
+                        Drupal 8 Slide 4
+                        The new features in CM for D8. Is sitting in config manager menu.
+                        Features still exist as per it's original purpose, package different elements that creates a
+                        feature together.
+                    </section>
+                    <section>
+                        Drupal 8 Slide 6
+                        3 ways of preventing:
+                        1) not allow config in UI: module config_readonly
+                        2) old fashion sync database into DEV and config export.
+                        3) Drush command: "drush config-merge @live-site --git"
+                    </section>
+                    <section>
+                        Drupal 8 Slide 7
+                        Benefits.
+                        1 - You can rollback configuration because is in git.
+                        2 - automatation workflow as well.
+                    </section>
+                    <section>
+                        Drupal 8 Slide 5
+                        CM is not magic, config is in code, but has to be "imported" to the DB for the run time.
+                        Also it won't solve problems like 2 people changing config at the same time.
+                        Drush option --partial
+                    </section>
+                    <section>
+                        Drupal 8 Slide 5
+                        If custom module you can provide configuration file, but it will only be read once.
+                        There is a project for that: config_update
+                    </section>
+                    <section>
+                        Drupal 8 Slide 5
+                        Be careful as when you delete a configuration you might delete dependencies.
+                        Also dealing with change field names e.g. is not possible through the CM, maybe use a update_n function.
+                    </section>
+                </section>
+
+				<section>
+                    <section>
+                        D8 + drush Slide 1
+                        intro
+                    </section>
+                    <section>
+                        D8 + drush Slide 2
+                        Real life example of how to manage configuration changes.
+                        config-export
+                        config-import
+                        some parameters
+                    </section>
+                    <section>
+                        D8 + drush Slide 3
+                        Maybe a demo or a video from a pre-recorded demo.
+                    </section>
+                    <section>
+                        D8 + drush Slide 4
+                    </section>
+                    <section>
+                        D8 + drush Slide 5
+                    </section>
+                </section>
+
+				<section>
+                    <section>
+                        Demo Slide 1
+                    </section>
+                    <section>
+                        Demo Slide 2
+                    </section>
+                    <section>
+                        Demo Slide 3
+                    </section>
+                    <section>
+                        Demo Slide 4
+                    </section>
+                </section>
+
+				<section>
+                    <section>
+                        Summary Slide 1
+                    </section>
+                    <section>
+                        Summary Slide 2
+                    </section>
+                    <section>
+                        Summary Slide 3
+                    </section>
+                    <section>
+                        Summary Slide 4
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        GoodBye Slide 1
+                        Thanks, the end.
+
+                    </section>
+                    <section>
+                        GoodBye Slide 2
+                        Sources and Credits
+                    </section>
+                    <section>
+                        GoodBye Slide 3
+                        Q&A
+                    </section>
+                    <section>
+                        GoodBye Slide 4
+                        Thanks.
+                    </section>
+                </section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

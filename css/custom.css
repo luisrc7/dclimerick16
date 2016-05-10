@@ -1,0 +1,17 @@
+.right {
+    float: right;
+}
+.left {
+    float: left;
+}
+.clear {
+    clear: both;
+}
+.slide-header {
+    position: absolute;
+    top: 25px;
+}
+.slide-footer {
+    position: absolute;
+    bottom: 25px;
+}
