@@ -1,17 +1,42 @@
-.right {
+.reveal .right {
     float: right;
 }
-.left {
+.reveal .left {
     float: left;
 }
-.clear {
+.reveal .clear {
     clear: both;
 }
-.slide-header {
+.reveal .slide-header {
     position: absolute;
     top: 25px;
 }
-.slide-footer {
+.reveal .slide-footer {
     position: absolute;
     bottom: 25px;
 }
+.reveal .highlight-iterate {
+    color: #00A69C;
+}
+.reveal .logo.left {
+    margin-left: -150px;
+}
+.reveal .logo.right {
+    margin-right: -150px;
+}
+.reveal .logo {
+    max-width: 200px;
+}
+.reveal .source {
+    font-size: 0.8em;
+    font-style: italic;
+}
+.reveal #qna {
+    width: 600px;
+    background: none;
+    border: none;
+}
+.reveal #d8-config-shot {
+    max-width: 800px;
+}
+

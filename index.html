@@ -29,207 +29,324 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-                <img src="img/logo-iterate.png" id="logo" class="right" />
+                <img src="img/logo-iterate.png" class="right logo" />
+                <img src="img/drupal-limerick-white.png" class="left logo" />
 				<section>
                     <section>
-                        <!--<h1>Introduction</h1>-->
-                        <h3>How Drupal 8 Changes the Development Workflow</h3>
-                        <p><em>Luis Rodriguez.</em> I am a Developer at <a target="_blank" href="https://www.iterate.ie">iterate.</a></p>
-                        <p>You can find me in:</p>
+                        <h2>How Drupal 8 Changes the Development Workflow</h2>
+                        <br/>
+                        by: <h3>Luis Rodriguez</h3>
+                    </section>
+                    <section>
+                        <p>I am a Developer at <a target="_blank" href="https://www.iterate.ie">iterate.</a></p>
+                        <p>Contact Me:</p>
                         <ul>
-                            <li>Drupal: <a target="_blank" href="https://www.drupal.org/u/luisrc7">https://www.drupal.org/u/luisrc7</a></li>
-                            <li>Twitter: <a target="_blank" href="https://twitter.com/luisrc7">@luisrc7</a></li>
-                            <li>LinkedIn: <a target="_blank" href="https://ie.linkedin.com/in/luisrc">https://ie.linkedin.com/in/luisrc</a></li>
+                            <li>Drupal - <a target="_blank" href="https://www.drupal.org/u/luisrc7">https://www.drupal.org/u/luisrc7</a></li>
+                            <li>Twitter - <a target="_blank" href="https://twitter.com/luisrc7">@luisrc7</a></li>
+                            <li>LinkedIn - <a target="_blank" href="https://ie.linkedin.com/in/luisrc">https://ie.linkedin.com/in/luisrc</a></li>
+                            <li>Email - <a href="mailto:luis@iterate.ie">luis@iterate.ie</a></li>
                         </ul>
                         <br/>
-                        <br/>
+                        <p>Presentation Slides:</p>
                         <p><em><a target="_blank" href="http://luisrc7.github.io/dclimerick16">http://luisrc7.github.io/dclimerick16</a></em></p>
+                    </section>
+                    <section>
+                        <p>At iterate we do websites, but we not only do websites, we are a Web Agency.</p>
+                        <p>We do consultancy work and <span class="fragment highlight-iterate"><strong>UX Research.</strong></span></p>
+                        <div class="fragment">
+                            <h3>And we are hiring!</h3>
+                            <p>Contact us at <a href="mailto:hello@iterate.ie">hello@iterate.ie</a> or <a target="_blank" href="https://twitter.com/iterate">@iterate</a>.</p>
+                        </div>
+                    </section>
+                    <section>
+                        <h3>How Drupal 8 Changes the Development Workflow</h3>
+                        <ol>
+                            <li>Drupal 7</li>
+                            <li>Drupal 8 - Configuration Management</li>
+                            <li>Drupal 8 CM + Drush</li>
+                            <li>Live Demo</li>
+                        </ol>
+                        <p></p>
                         <aside class="notes">
-                            Nothing special.
+                            I will tell my development experience. <br/>
+                            Short talk.
+                        </aside>
+                    </section>
+                </section>
+
+				<section>
+                    <section>
+                        <h3>Development Workflow in Drupal 7</h3>
+                        <p>What is configuration</p>
+                        <ul>
+                            <li class="fragment">System variables (e.g. Site Name)</li>
+                            <li class="fragment">Content Types, Fields or Views</li>
+                            <li class="fragment">Menus</li>
+                            <li class="fragment">Vocabularies</li>
+                        </ul>
+                        <aside class="notes">
+                            Drupal 7 Slide 1 <br/>
+                            Intro
                         </aside>
                     </section>
                     <section>
-                        Presentation Slide 2
-                        who am I.
-                        My connections details, email, linkedin, twitter?
-                        And my position in iterate.
+                        <h3>Development Workflow in Drupal 7</h3>
+                        <p>What is <span class="highlight-iterate"><strong>NOT</strong></span> configuration</p>
+                        <ul>
+                            <li class="fragment">Content: Nodes or Users</li>
+                            <li class="fragment">Comments</li>
+                            <li class="fragment">Taxonomy Terms</li>
+                            <li class="fragment">Menu Items</li>
+                        </ul>
+                        <aside class="notes">
+                            Drupal 7 Slide 1 <br/>
+                            Intro
+                        </aside>
                     </section>
                     <section>
-                        Presentation Slide 3
-                        who is iterate.
-                        We are hiring?
-                        What we do.
+                        <img data-src="img/ConfigContent.jpg" alt="What is Configuration"/>
+                        <br />
+                        <span class="source">Image Source: http://hojtsy.hu</span>
                     </section>
                     <section>
-                        Presentation Slide 4
-                        Structure of the talk.
-                        Present the key points of my presentation and talk a little bit about each one.
-                    </section>
-                </section>
-
-				<section>
-                    <section>
-                        Drupal 7 Slide 1
-                        Intro
-                    </section>
-                    <section>
-                        Drupal 7 Slide 1
-                        What is content and what is configuration (General)
-                        1 is the Drupal Core
-                        2 we have our custom modules we installed or we created, so basically anything inside sites
-                        folder and profiles folder if using a profile.
-                        3 then we have the files, some managed hosting companies keep the filesystem out of the web
-                        server or even in a CDN.
-                        4 is the database.
+                        <h3>Different Parts</h3>
+                        <ul>
+                            <li class="fragment">Drupal Core (Almost all files/folders at root)</li>
+                            <li class="fragment">Websites related Files (sites and profiles folders)</li>
+                            <li class="fragment">Filesystem (sites/default/files or sites/my-site/files)</li>
+                            <li class="fragment">Database</li>
+                        </ul>
+                        <aside class="notes">
+                            Again this is in my own opinion/experience. <br/>
+                            Custom or Contrib modules / themes / profiles. <br/>
+                            Files could also be in a CDN.
+                        </aside>
                     </section>
                     <section>
-                        Drupal 7 Slide 2
-                        Any config change won't be saved in files, so won't be saved in version control.
+                        <p>Any configuration change will be saved into the database</p>
+                        <p>But there were some workarounds.</p>
+                        <ul>
+                            <li class="fragment">Features</li>
+                            <span class="fragment">Was meant to share packages of code to different websites</span>
+                            <li class="fragment">hook_update_N</li>
+                            <li class="fragment">Others like Export/Import functions (Views, Context, Rules)</li>
+                        </ul>
+                        <aside class="notes">
+                            How D7 manage configuration changes. <br />
+                            Blocks, CT definitions, View updates, context, rules.
+                        </aside>
                     </section>
                     <section>
-                        Drupal 7 Slide 3
-                        personal experiences (bads). Personal fails.
-                        Lots of problems with configuration, ending doing it on live, or not downloading the latest
-                        version of the live site before doing the development, or some changed between your development
-                        and the deployment, etc…. All this could cause to lose work or even make things not working on
-                        the live site.
-                    </section>
-                    <section>
-                        Drupal 7 Slide 4
-                        How D7 manage configuration changes. (blocks, CT definitions, View updates, context rules)
-                        Any of these changes are managed directly in the database.
-                    </section>
-                    <section>
-                        Drupal 7 Slide 5
-                        Some workarounds like Features module or hook_update for modules and profiles.
-                    </section>
-                </section>
-
-                <section>
-                    <section>
-                        Drupal 8 Slide 1
-                        Intro
-                    </section>
-                    <section>
-                        Drupal 8 Slide 2
-                        How it works. (what you can and you can’t do)
-                        Yaml files.
-                    </section>
-                    <section>
-                        Drupal 8 Slide 3
-                        Maybe some history about CM in D8.
-                        Export / import
-                        Single or full
-                        Through the UI as well
-                    </section>
-                    <section>
-                        Drupal 8 Slide 4
-                        The new features in CM for D8. Is sitting in config manager menu.
-                        Features still exist as per it's original purpose, package different elements that creates a
-                        feature together.
-                    </section>
-                    <section>
-                        Drupal 8 Slide 6
-                        3 ways of preventing:
-                        1) not allow config in UI: module config_readonly
-                        2) old fashion sync database into DEV and config export.
-                        3) Drush command: "drush config-merge @live-site --git"
-                    </section>
-                    <section>
-                        Drupal 8 Slide 7
-                        Benefits.
-                        1 - You can rollback configuration because is in git.
-                        2 - automatation workflow as well.
-                    </section>
-                    <section>
-                        Drupal 8 Slide 5
-                        CM is not magic, config is in code, but has to be "imported" to the DB for the run time.
-                        Also it won't solve problems like 2 people changing config at the same time.
-                        Drush option --partial
-                    </section>
-                    <section>
-                        Drupal 8 Slide 5
-                        If custom module you can provide configuration file, but it will only be read once.
-                        There is a project for that: config_update
-                    </section>
-                    <section>
-                        Drupal 8 Slide 5
-                        Be careful as when you delete a configuration you might delete dependencies.
-                        Also dealing with change field names e.g. is not possible through the CM, maybe use a update_n function.
-                    </section>
-                </section>
-
-				<section>
-                    <section>
-                        D8 + drush Slide 1
-                        intro
-                    </section>
-                    <section>
-                        D8 + drush Slide 2
-                        Real life example of how to manage configuration changes.
-                        config-export
-                        config-import
-                        some parameters
-                    </section>
-                    <section>
-                        D8 + drush Slide 3
-                        Maybe a demo or a video from a pre-recorded demo.
-                    </section>
-                    <section>
-                        D8 + drush Slide 4
-                    </section>
-                    <section>
-                        D8 + drush Slide 5
-                    </section>
-                </section>
-
-				<section>
-                    <section>
-                        Demo Slide 1
-                    </section>
-                    <section>
-                        Demo Slide 2
-                    </section>
-                    <section>
-                        Demo Slide 3
-                    </section>
-                    <section>
-                        Demo Slide 4
-                    </section>
-                </section>
-
-				<section>
-                    <section>
-                        Summary Slide 1
-                    </section>
-                    <section>
-                        Summary Slide 2
-                    </section>
-                    <section>
-                        Summary Slide 3
-                    </section>
-                    <section>
-                        Summary Slide 4
+                        <h3>My bad experiences</h3>
+                        <ul>
+                            <li class="fragment">Unsynchronised environments</li>
+                            <li class="fragment">Changes made by Clients or other developers</li>
+                            <li class="fragment">Doing configuration in Live!</li>
+                            <li class="fragment">Feature's conflicts, not working issues, overrides.</li>
+                        </ul>
+                        <aside class="notes">
+                        </aside>
                     </section>
                 </section>
 
                 <section>
                     <section>
-                        GoodBye Slide 1
-                        Thanks, the end.
+                        <h3>Development Workflow in Drupal 8</h3>
+                        <h4>Configuration Management !!!</h4>
+                        <aside class="notes">
+                            Is a global solution to save config into code.
+                        </aside>
+                    </section>
+                    <section>
+                        <p>Configuration Management will save Website configuration into files</p>
+                        <p class="fragment">CM has an interface to import/export configuration</p>
+                        <p class="fragment">CM uses Yaml files</p>
+                        <aside class="notes">
+                            Yaml files are structured files, like XML format. <br />
+                            YAML = Yet Another Markup Language.
+                        </aside>
+                    </section>
+                    <section>
+                        <img id="d8-config-shot" data-src="img/YamlConfig.png" alt="Configuration Files for Standard Profile"/>
+                        <br />
+                        <p>Yaml files from Standard Profile installation</p>
+                    </section>
+                    <section>
+                        <p>The CMI (Configuration Manager Initiative) was the first initiative for Drupal 8 back in 2012</p>
+                        <p class="fragment">The UI allows Export/Import the whole site configuration</p>
+                        <p class="fragment">And allows you to Export/Import single configuration files</p>
+                        <p class="fragment">Also has a form interface to upload the code for the new configuration through the UI</p>
+                        <aside class="notes">
+                            We will cover all these topics and example in the Demo.
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>CM Dependencies</h3>
+                        <p>CM manage dependencies</p>
+                        <p>All dependencies get deleted</p>
+                        <p>This allow the UI to give better information</p>
+                        <aside class="notes">
+                            CM manage dependencies different types. <br />
+                            Delete CT will delete a view for example. <br />
+                            Cool because don't leave anything that is now working on your installation.
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>Custom configuration files</h3>
+                        <p>It's possible in custom modules</p>
+                        <p>But configuration files get imported just one time</p>
+                        <p>To solve this issue there is "config_update" module</p>
+                        <aside class="notes">
+                            config_update Allows you to update configuration of your custom modules.
+                        </aside>
+                    </section>
+                    <section>
+                        <p>Then, does Features exists in Drupal 8?</p>
+                        <p class="fragment">Yes</p>
+                        <p class="fragment">Features is focused on its original purpose</p>
+                        <p class="fragment">Pack configuration together to share on different websites</p>
+                        <p class="fragment">Features will sit under the CM path</p>
+                        <aside class="notes">
+                            Question the audience why Features is still available in D8. <br />
+                        </aside>
+                    </section>
+                    <section>
+                        <p>To avoid possible issues</p>
+                        <ul>
+                            <li class="fragment">Block UI changes on configuration. Module: config_readonly</li>
+                            <li class="fragment">Old way, download/sync the Live site into development before make the changes</li>
+                            <li class="fragment">With Drush</li>
+                        </ul>
+                        <aside class="notes">
+                            We will see the Drush options in the next block.
+                            #>drush config-merge @live-site --git
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>Benefits</h3>
+                        <ul>
+                            <li class="fragment">Version control your configuration</li>
+                            <li class="fragment">Rollback to previous configuration</li>
+                            <li class="fragment">Create automated workflow</li>
+                        </ul>
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>Unfortunately CM is not magic</h3>
+                        <p>Configuration still need to be imported</p>
+                        <p>Configuration needs to be in the database at run time</p>
+                        <p>Won't solve issues like complicated dependencies or 2 people working on the same configuration</p>
+                        <aside class="notes">
+                            Drush option --partial
+                        </aside>
+                    </section>
+                </section>
 
+				<section>
+                    <section>
+                        <h2>CM + Drush Basics</h2>
+                        <p>Since Drush 8.x version</p>
+                        <aside class="notes">
+                        </aside>
                     </section>
                     <section>
-                        GoodBye Slide 2
-                        Sources and Credits
+                        <h3>Basic Drush commands</h3>
+                        <p class="fragment">drush config-export</p>
+                        <p class="fragment">drush config-import</p>
+                        <aside class="notes">
+                            config-export: Export configuration to a directory. <br />
+                            config-import: Import config from a config directory. <br />
+                        </aside>
                     </section>
                     <section>
-                        GoodBye Slide 3
-                        Q&A
+                        <h3>Basic Drush arguments</h3>
+                        <p class="fragment">--push | --add | --commit</p>
+                        <p class="fragment">--destination | --source</p>
+                        <p class="fragment">--partial</p>
+                        <aside class="notes">
+                            --push: commit and push the config export. --commit or --add <br />
+                            --destination/source: Saves/Load the config in a given path. <br />
+                            --partial: Only updates and new configs will be processed. (only for import)
+                        </aside>
+                    </section>
+                </section>
+
+				<section>
+                    <section>
+                        <h2>It's Demo Time!</h2>
+                        <aside class="notes">
+                            1) Check out the CM interface in DEV <br />
+                            2) Export configuration in LIVE <br />
+                            3) Import configuration in DEV <br />
+                            4) Modify configuration in DEV <br />
+                            5) Push config to LIVE (git) and Import/Synchronise <br />
+                            6) Sync LIVE config into existing changed config in DEV <br />
+                        </aside>
+                    </section>
+                </section>
+
+				<section>
+                    <section>
+                        <h3>Drupal 7</h3>
+                        <ul>
+                            <li class="fragment">What is and what isn't configuration</li>
+                            <li class="fragment">Parts of Drupal</li>
+                            <li class="fragment">Workaround to save config in files</li>
+                        </ul>
+                        <aside class="notes">
+                            Parts of Drupal from my perspective. <br />
+                            Workarounds: Features hook_update_N or Export/Import.
+                        </aside>
                     </section>
                     <section>
-                        GoodBye Slide 4
-                        Thanks.
+                        <h3>Drupal 8</h3>
+                        <ul>
+                            <li class="fragment grow">Configuration Management</li>
+                            <li class="fragment">YAML files</li>
+                            <li class="fragment">Benefits</li>
+                            <li class="fragment">CM manage Dependencies</li>
+                            <li class="fragment">CM is not Magic</li>
+                        </ul>
+                        <aside class="notes">
+                            Benefits: Git, Rollback, automated wf. <br />
+                            Issues: Import the files, multiple-people. <br />
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>With Drush</h3>
+                        <ul>
+                            <li class="fragment">Basic Import / Export commands</li>
+                            <li class="fragment">Basic command parameters</li>
+                            <li class="fragment">Alias combinations</li>
+                        </ul>
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>Sources and Resources</h3>
+                        <ul>
+                            <li class="fragment">DrupalCon presentations</li>
+                            <li class="fragment">Drupal.org Documentation</li>
+                            <li class="fragment"><a href="http://lab.hakim.se/reveal-js" target="_blank">Reveal.js</a></li>
+                        </ul>
+                        <aside class="notes">
+                        </aside>
+                    </section>
+                    <section>
+                        <img id="qna" data-src="img/question-mark.png" alt="Questions and Answers"/>
+                    </section>
+                    <section>
+                        <h2>Thank you!</h2>
+                        <br />
+                        <br />
+                        <h4>Luis Rodriguez</h4>
+                        <p><em><a target="_blank" href="http://luisrc7.github.io/dclimerick16">http://luisrc7.github.io/dclimerick16</a></em></p>
+                        <aside class="notes">
+                        </aside>
                     </section>
                 </section>
 
